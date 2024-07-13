@@ -1,0 +1,5 @@
+com/example/pleague/model/Standings.class
+com/example/pleague/controller/StandingsController.class
+com/example/pleague/PleagueApplication.class
+com/example/pleague/repository/StandingsRepository.class
+com/example/pleague/config/WebConfig.class
