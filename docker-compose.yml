@@ -26,15 +26,7 @@
 #     networks:
 #       - pleague-network
   
-#   frontend:
-#     build:
-#       context: ./Frontend/latest
-#       dockerfile: Dockerfile
-#     container_name: pleague-frontend
-#     ports:
-#       - "5173:5173"
-#     networks:
-#       - pleague-network
+
 
 # networks:
 #   pleague-network:
@@ -43,30 +35,43 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:8.0
-    restart: always
+  test-mysql:
+    image: mysql:latest
+    container_name: test-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678  # Change this to a secure password
-      MYSQL_DATABASE: pleague        # Change this to your database name
-      MYSQL_USER: root               # Change this to your MySQL username
-      MYSQL_PASSWORD: 12345678       # Change this to your MySQL password
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: pleague
     ports:
-      - "3307:3306"                  # Expose MySQL port for external access
+      - "3307:3306"
+    networks:
+      - pleague-network
 
-  backend:
+  frontend:
     build:
-      context: .
-      dockerfile: Dockerfile        # Ensure this matches your Dockerfile name
+      context: ./Frontend/latest
+      dockerfile: Dockerfile
+    container_name: pleague-frontend
     ports:
-      - "8080:8080"                  # Expose Spring Boot app port for external access
-    depends_on:
-      - mysql                        # Ensure 'backend' starts after 'mysql'
+      - "5173:5173"
+    networks:
+      - pleague-network
+
+  pleague-backend:
+    build:
+      context: ./BackendJava
+      dockerfile: Dockerfile
+    container_name: pleague-backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pleague  # MySQL hostname 'mysql' matches service name
+      SPRING_DATASOURCE_URL: jdbc:mysql://test-mysql:3306/pleague
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 12345678
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SPRING_JPA_SHOW_SQL: "true"
-      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
-      SPRING_JPA_PROPERTIES_HIBERNATE_TEMP_USE_JDBC_METADATA_DEFAULTS: "false"
+    depends_on:
+      - test-mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - pleague-network
+
+networks:
+  pleague-network:
+    driver: bridge
