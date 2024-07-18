@@ -37,7 +37,7 @@ version: '3.8'
 services:
   test-mysql:
     image: mysql:latest
-    container_name: test-mysql
+    container_name: mysqlf
     environment:
       MYSQL_ROOT_PASSWORD: 12345678
       MYSQL_DATABASE: pleague
@@ -50,9 +50,9 @@ services:
     build:
       context: ./Frontend/latest
       dockerfile: Dockerfile
-    container_name: pleague-frontend
+    container_name: pleague-frontendf
     ports:
-      - "5173:5173"
+      - "5173:80"
     networks:
       - pleague-network
 
@@ -60,7 +60,7 @@ services:
     build:
       context: ./BackendJava
       dockerfile: Dockerfile
-    container_name: pleague-backend
+    container_name: pleague-backendf
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://test-mysql:3306/pleague
       SPRING_DATASOURCE_USERNAME: root
