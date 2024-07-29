@@ -75,3 +75,7 @@ services:
 networks:
   pleague-network:
     driver: bridge
+
+
+# docker build -t asia-east1-docker.pkg.dev/my-project-1559555174132/docker-gcp/backend:latest .
+# docker build -t asia-east1-docker.pkg.dev/my-project-1559555174132/docker-gcp/frontend:latest .

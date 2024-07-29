@@ -9,7 +9,7 @@ import com.example.pleague.model.GameSchedule;
 
 
 @Repository
-public interface GameScheduleRepository extends JpaRepository<GameSchedule, Long> {
+public interface GameScheduleRepository extends JpaRepository<GameSchedule, Integer> {
     List<GameSchedule> findByYearAndGameType(String year,String gameType); // Query method for year
 }
 

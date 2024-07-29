@@ -1,47 +1,61 @@
 package com.example.pleague.model;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+// @Table(name = "GameSchedule")
 public class GameSchedule {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    private String game_number;
-    private String game_date;
+    @Column(name = "game_number")
+    private String gameNumber;
+
+    @Column(name = "game_date")
+    private String gameDate;
+
+    @Column(name = "home")
     private String home;
+
+    @Column(name = "road")
     private String road;
+
+    @Column(name = "attendance")
     private String attendance;
+
+    @Column(name = "year")
     private String year;
-    private String game_type;
+
+    @Column(name = "game_type")
+    private String gameType;
 
     // Getters and Setters
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getGame_number() {
-        return game_number;
+    public String getGameNumber() {
+        return gameNumber;
     }
 
-    public void setGame_number(String game_number) {
-        this.game_number = game_number;
+    public void setGameNumber(String gameNumber) {
+        this.gameNumber = gameNumber;
     }
 
-    public String getGame_date() {
-        return game_date;
+    public String getGameDate() {
+        return gameDate;
     }
 
-    public void setGame_date(String game_date) {
-        this.game_date = game_date;
+    public void setGameDate(String gameDate) {
+        this.gameDate = gameDate;
     }
 
     public String getHome() {
@@ -67,6 +81,7 @@ public class GameSchedule {
     public void setAttendance(String attendance) {
         this.attendance = attendance;
     }
+
     public String getYear() {
         return year;
     }
@@ -75,12 +90,11 @@ public class GameSchedule {
         this.year = year;
     }
 
-    public String getGame_type() {
-        return game_type;
+    public String getGameType() {
+        return gameType;
     }
 
-    public void setGame_type(String game_type) {
-        this.game_type = game_type;
+    public void setGameType(String gameType) {
+        this.gameType = gameType;
     }
 }
-    
