@@ -15,6 +15,8 @@ public class GameSchedule {
     private String home;
     private String road;
     private String attendance;
+    private String year;
+    private String game_type;
 
     // Getters and Setters
 
@@ -64,6 +66,21 @@ public class GameSchedule {
 
     public void setAttendance(String attendance) {
         this.attendance = attendance;
+    }
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getGame_type() {
+        return game_type;
+    }
+
+    public void setGame_type(String game_type) {
+        this.game_type = game_type;
     }
 }
     

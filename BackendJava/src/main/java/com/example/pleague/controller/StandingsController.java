@@ -23,3 +23,4 @@ public class StandingsController {
         return standingsRepository.findByYear(year);
     }
 }
+
