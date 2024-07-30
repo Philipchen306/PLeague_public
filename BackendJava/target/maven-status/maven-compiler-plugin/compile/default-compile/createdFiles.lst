@@ -1,6 +1,7 @@
 com/example/pleague/model/GameSchedule.class
 com/example/pleague/controller/StandingsController.class
 com/example/pleague/PleagueApplication.class
+com/example/TestDatabaseConnection.class
 com/example/pleague/controller/GameScheduleController.class
 com/example/pleague/config/WebConfig.class
 com/example/pleague/model/Standings.class
