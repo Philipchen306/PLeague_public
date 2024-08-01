@@ -31,16 +31,29 @@ import com.example.pleague.repository.GameScheduleRepository;
 // }
 
 @RestController
-@RequestMapping("api/gameshcedule")
+@RequestMapping("api/gameschedule")
 public class GameScheduleController {
+
     
     @Autowired
     private GameScheduleRepository gameScheduleRepository;
 
-    @GetMapping("/game-schedule")
-    public List<GameSchedule> getGameScheduleByYearAndType(@RequestParam String year, @RequestParam String gameType) {
-        return gameScheduleRepository.findByYearAndGameType(year, gameType);
-    }
+    @GetMapping
+    public List<GameSchedule> getAllGameSchedules(
+        @RequestParam(required = false) String year,
+        @RequestParam(required = false) String gameType) {
+            System.out.println("Received year: " + year);
+            System.out.println("Received gameType: " + gameType);
+        if (year != null && gameType != null) {
+            return gameScheduleRepository.findByYearAndGameType(year, gameType);
+        } else if (year != null) {
+            return gameScheduleRepository.findByYear(year);
+        } else if (gameType != null) {
+            return gameScheduleRepository.findByGameType(gameType);
+        } else {
+            return gameScheduleRepository.findAll();
+        }
+}
 }
 
 // @RequestMapping("/games")
